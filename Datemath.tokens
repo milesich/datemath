@@ -1,0 +1,14 @@
+EsDuration=1
+GoDuration=2
+Literal=3
+Plus=4
+Minus=5
+Round=6
+Builtins=7
+IntegerLiteral=8
+FloatLiteral=9
+Identifier=10
+WhiteSpaces=11
+'+'=4
+'-'=5
+'/'=6
