@@ -1,7 +1,7 @@
 Simple math with dates
 ======================
 
-[![Build Status](https://travis-ci.org/wuzuf/datemath.svg?branch=master)](https://travis-ci.org/wuzuf/datemath) 
+[![Build Status](https://travis-ci.com/wuzuf/datemath.svg?branch=master)](https://travis-ci.com/wuzuf/datemath) 
 [![Go Report Card](https://goreportcard.com/badge/github.com/wuzuf/datemath)](https://goreportcard.com/report/github.com/wuzuf/datemath) 
 [![Code Coverage](https://scrutinizer-ci.com/g/wuzuf/datemath/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/wuzuf/datemath/?branch=master) 
 [![GoDoc](https://godoc.org/github.com/wuzuf/datemath?status.svg)](https://godoc.org/github.com/wuzuf/datemath)
