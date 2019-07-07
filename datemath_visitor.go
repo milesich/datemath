@@ -13,6 +13,9 @@ type DatemathVisitor interface {
 	// Visit a parse tree produced by DatemathParser#Identifier.
 	VisitIdentifier(ctx *IdentifierContext) interface{}
 
+	// Visit a parse tree produced by DatemathParser#DateLiteral.
+	VisitDateLiteral(ctx *DateLiteralContext) interface{}
+
 	// Visit a parse tree produced by DatemathParser#Literal.
 	VisitLiteral(ctx *LiteralContext) interface{}
 

@@ -8,6 +8,7 @@ timestamp
 	| timestamp Round duration             # Round
 	| Identifier                           # Identifier
 	| Literal                              # Literal
+	| DateLiteral                          # DateLiteral
 ;
 
 duration
@@ -59,6 +60,9 @@ FloatLiteral: DecimalLiteral '.' Digit+ | '.' Digit+;
 Identifier: IdentifierStart IdentifierPart*;
 
 WhiteSpaces: [\t\u000B\u000C\u0020\u00A0]+ -> channel(HIDDEN);
+DateLiteral:
+	Digit Digit Digit Digit DateSeparator Digit? Digit DateSeparator Digit? Digit .*? ('||' | EOF);
+fragment DateSeparator: ('-' | '/' );
 fragment IdentifierStart: Letter;
 fragment IdentifierPart: Letter | Digit | [_];
 fragment Letter: 'A' ..'Z' | 'a' ..'z';

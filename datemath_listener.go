@@ -13,6 +13,9 @@ type DatemathListener interface {
 	// EnterIdentifier is called when entering the Identifier production.
 	EnterIdentifier(c *IdentifierContext)
 
+	// EnterDateLiteral is called when entering the DateLiteral production.
+	EnterDateLiteral(c *DateLiteralContext)
+
 	// EnterLiteral is called when entering the Literal production.
 	EnterLiteral(c *LiteralContext)
 
@@ -33,6 +36,9 @@ type DatemathListener interface {
 
 	// ExitIdentifier is called when exiting the Identifier production.
 	ExitIdentifier(c *IdentifierContext)
+
+	// ExitDateLiteral is called when exiting the DateLiteral production.
+	ExitDateLiteral(c *DateLiteralContext)
 
 	// ExitLiteral is called when exiting the Literal production.
 	ExitLiteral(c *LiteralContext)

@@ -9,6 +9,7 @@ IntegerLiteral=8
 FloatLiteral=9
 Identifier=10
 WhiteSpaces=11
+DateLiteral=12
 '+'=4
 '-'=5
 '/'=6

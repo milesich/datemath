@@ -15,19 +15,20 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 13, 31, 4,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 14, 32, 4,
 	2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 3, 2, 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3,
-	3, 5, 3, 16, 10, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 3, 24, 10, 3,
-	12, 3, 14, 3, 27, 11, 3, 3, 4, 3, 4, 3, 4, 2, 3, 4, 5, 2, 4, 6, 2, 4, 3,
-	2, 6, 7, 3, 2, 3, 4, 2, 31, 2, 8, 3, 2, 2, 2, 4, 15, 3, 2, 2, 2, 6, 28,
-	3, 2, 2, 2, 8, 9, 5, 4, 3, 2, 9, 10, 7, 2, 2, 3, 10, 3, 3, 2, 2, 2, 11,
-	12, 8, 3, 1, 2, 12, 16, 7, 9, 2, 2, 13, 16, 7, 12, 2, 2, 14, 16, 7, 5,
-	2, 2, 15, 11, 3, 2, 2, 2, 15, 13, 3, 2, 2, 2, 15, 14, 3, 2, 2, 2, 16, 25,
-	3, 2, 2, 2, 17, 18, 12, 6, 2, 2, 18, 19, 9, 2, 2, 2, 19, 24, 5, 6, 4, 2,
-	20, 21, 12, 5, 2, 2, 21, 22, 7, 8, 2, 2, 22, 24, 5, 6, 4, 2, 23, 17, 3,
-	2, 2, 2, 23, 20, 3, 2, 2, 2, 24, 27, 3, 2, 2, 2, 25, 23, 3, 2, 2, 2, 25,
-	26, 3, 2, 2, 2, 26, 5, 3, 2, 2, 2, 27, 25, 3, 2, 2, 2, 28, 29, 9, 3, 2,
-	2, 29, 7, 3, 2, 2, 2, 5, 15, 23, 25,
+	3, 3, 3, 5, 3, 17, 10, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 3, 25,
+	10, 3, 12, 3, 14, 3, 28, 11, 3, 3, 4, 3, 4, 3, 4, 2, 3, 4, 5, 2, 4, 6,
+	2, 4, 3, 2, 6, 7, 3, 2, 3, 4, 2, 33, 2, 8, 3, 2, 2, 2, 4, 16, 3, 2, 2,
+	2, 6, 29, 3, 2, 2, 2, 8, 9, 5, 4, 3, 2, 9, 10, 7, 2, 2, 3, 10, 3, 3, 2,
+	2, 2, 11, 12, 8, 3, 1, 2, 12, 17, 7, 9, 2, 2, 13, 17, 7, 12, 2, 2, 14,
+	17, 7, 5, 2, 2, 15, 17, 7, 14, 2, 2, 16, 11, 3, 2, 2, 2, 16, 13, 3, 2,
+	2, 2, 16, 14, 3, 2, 2, 2, 16, 15, 3, 2, 2, 2, 17, 26, 3, 2, 2, 2, 18, 19,
+	12, 7, 2, 2, 19, 20, 9, 2, 2, 2, 20, 25, 5, 6, 4, 2, 21, 22, 12, 6, 2,
+	2, 22, 23, 7, 8, 2, 2, 23, 25, 5, 6, 4, 2, 24, 18, 3, 2, 2, 2, 24, 21,
+	3, 2, 2, 2, 25, 28, 3, 2, 2, 2, 26, 24, 3, 2, 2, 2, 26, 27, 3, 2, 2, 2,
+	27, 5, 3, 2, 2, 2, 28, 26, 3, 2, 2, 2, 29, 30, 9, 3, 2, 2, 30, 7, 3, 2,
+	2, 2, 5, 16, 24, 26,
 }
 var deserializer = antlr.NewATNDeserializer(nil)
 var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
@@ -37,7 +38,7 @@ var literalNames = []string{
 }
 var symbolicNames = []string{
 	"", "EsDuration", "GoDuration", "Literal", "Plus", "Minus", "Round", "Builtins",
-	"IntegerLiteral", "FloatLiteral", "Identifier", "WhiteSpaces",
+	"IntegerLiteral", "FloatLiteral", "Identifier", "WhiteSpaces", "DateLiteral",
 }
 
 var ruleNames = []string{
@@ -83,6 +84,7 @@ const (
 	DatemathParserFloatLiteral   = 9
 	DatemathParserIdentifier     = 10
 	DatemathParserWhiteSpaces    = 11
+	DatemathParserDateLiteral    = 12
 )
 
 // DatemathParser rules.
@@ -309,6 +311,50 @@ func (s *IdentifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	switch t := visitor.(type) {
 	case DatemathVisitor:
 		return t.VisitIdentifier(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type DateLiteralContext struct {
+	*TimestampContext
+}
+
+func NewDateLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *DateLiteralContext {
+	var p = new(DateLiteralContext)
+
+	p.TimestampContext = NewEmptyTimestampContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*TimestampContext))
+
+	return p
+}
+
+func (s *DateLiteralContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *DateLiteralContext) DateLiteral() antlr.TerminalNode {
+	return s.GetToken(DatemathParserDateLiteral, 0)
+}
+
+func (s *DateLiteralContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(DatemathListener); ok {
+		listenerT.EnterDateLiteral(s)
+	}
+}
+
+func (s *DateLiteralContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(DatemathListener); ok {
+		listenerT.ExitDateLiteral(s)
+	}
+}
+
+func (s *DateLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case DatemathVisitor:
+		return t.VisitDateLiteral(s)
 
 	default:
 		return t.VisitChildren(s)
@@ -573,7 +619,7 @@ func (p *DatemathParser) timestamp(_p int) (localctx ITimestampContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(13)
+	p.SetState(14)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
@@ -605,11 +651,20 @@ func (p *DatemathParser) timestamp(_p int) (localctx ITimestampContext) {
 			p.Match(DatemathParserLiteral)
 		}
 
+	case DatemathParserDateLiteral:
+		localctx = NewDateLiteralContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(13)
+			p.Match(DatemathParserDateLiteral)
+		}
+
 	default:
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(23)
+	p.SetState(24)
 	p.GetErrorHandler().Sync(p)
 	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 2, p.GetParserRuleContext())
 
@@ -619,19 +674,19 @@ func (p *DatemathParser) timestamp(_p int) (localctx ITimestampContext) {
 				p.TriggerExitRuleEvent()
 			}
 			_prevctx = localctx
-			p.SetState(21)
+			p.SetState(22)
 			p.GetErrorHandler().Sync(p)
 			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext()) {
 			case 1:
 				localctx = NewBinaryContext(p, NewTimestampContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, DatemathParserRULE_timestamp)
-				p.SetState(15)
+				p.SetState(16)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
+					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 5)", ""))
 				}
 				{
-					p.SetState(16)
+					p.SetState(17)
 
 					var _lt = p.GetTokenStream().LT(1)
 
@@ -649,31 +704,31 @@ func (p *DatemathParser) timestamp(_p int) (localctx ITimestampContext) {
 					}
 				}
 				{
-					p.SetState(17)
+					p.SetState(18)
 					p.Duration()
 				}
 
 			case 2:
 				localctx = NewRoundContext(p, NewTimestampContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, DatemathParserRULE_timestamp)
-				p.SetState(18)
+				p.SetState(19)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 3)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
-				}
-				{
-					p.SetState(19)
-					p.Match(DatemathParserRound)
+				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
+					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
 				}
 				{
 					p.SetState(20)
+					p.Match(DatemathParserRound)
+				}
+				{
+					p.SetState(21)
 					p.Duration()
 				}
 
 			}
 
 		}
-		p.SetState(25)
+		p.SetState(26)
 		p.GetErrorHandler().Sync(p)
 		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 2, p.GetParserRuleContext())
 	}
@@ -780,7 +835,7 @@ func (p *DatemathParser) Duration() (localctx IDurationContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(26)
+		p.SetState(27)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == DatemathParserEsDuration || _la == DatemathParserGoDuration) {
@@ -811,10 +866,10 @@ func (p *DatemathParser) Sempred(localctx antlr.RuleContext, ruleIndex, predInde
 func (p *DatemathParser) Timestamp_Sempred(localctx antlr.RuleContext, predIndex int) bool {
 	switch predIndex {
 	case 0:
-		return p.Precpred(p.GetParserRuleContext(), 4)
+		return p.Precpred(p.GetParserRuleContext(), 5)
 
 	case 1:
-		return p.Precpred(p.GetParserRuleContext(), 3)
+		return p.Precpred(p.GetParserRuleContext(), 4)
 
 	default:
 		panic("No predicate with index: " + fmt.Sprint(predIndex))

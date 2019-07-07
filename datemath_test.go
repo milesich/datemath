@@ -43,6 +43,12 @@ var datemathSuccess = []struct {
 	{"start/10m - m", time.Date(2019, 7, 6, 15, 59, 0, 0, time.UTC), "Round to 10m, use an identifier"},
 	{"'2019-02-01'/3M", time.Date(2019, 1, 1, 0, 0, 0, 0, time.UTC), "Explicit anchor date, round to quarter"},
 	{"'2019-07-07 12:03:05'/w", time.Date(2019, 7, 1, 0, 0, 0, 0, time.UTC), "Explicit anchor date, round to quarter"},
+	{"2019-07-06", time.Date(2019, 7, 6, 0, 0, 0, 0, time.UTC), "Date"},
+	{"2019-7-6", time.Date(2019, 7, 6, 0, 0, 0, 0, time.UTC), "Date (no leading 0)"},
+	{"2019-07-06 12:03:05", time.Date(2019, 7, 6, 12, 3, 5, 0, time.UTC), "Date and time (second)"},
+	{"2019/07/06 10:00:00.001081", time.Date(2019, 7, 6, 10, 0, 0, 1081000, time.UTC), "Date and time (microsecond)"},
+	{"2019-07-06T10:00:00.001081Z", time.Date(2019, 7, 6, 10, 0, 0, 1081000, time.UTC), "Date and time (ISO)"},
+	{"2019/07/06 10:00:00.001081||/m-m", time.Date(2019, 7, 6, 9, 59, 0, 0, time.UTC), "Math from date literal"},
 }
 
 func TestSuccess(t *testing.T) {
@@ -64,6 +70,7 @@ var datemathError = []struct {
 	{"now-now", ":1:4:mismatched input 'now' expecting {EsDuration, GoDuration}"},
 	{"now- 1 h", ":1:5:extraneous input '1' expecting {EsDuration, GoDuration}"},
 	{"unknown-1h", "Unknown identifier: 'unknown'"},
+	{"2019/07/06 10:00:00.001081/m-m", `parsing time "2019/07/06 10:00:00.001081/m-m" as "2006/01/02 15:04:05.0000000m-m": cannot parse "m-m" as ".0000000"`},
 }
 
 func TestError(t *testing.T) {

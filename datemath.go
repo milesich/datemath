@@ -158,6 +158,14 @@ func (p *parser) ExitLiteral(c *LiteralContext) {
 	}
 }
 
+func (p *parser) ExitDateLiteral(c *DateLiteralContext) {
+	var err error
+	p.ts, err = dateparse.ParseAny(strings.TrimRight(c.GetText(), "|"))
+	if err != nil {
+		p.errors = append(p.errors, err)
+	}
+}
+
 func (p *parser) SyntaxError(recognizer antlr.Recognizer, offendingSymbol interface{}, line, column int, msg string, e antlr.RecognitionException) {
 	p.errors = append(p.errors, fmt.Errorf(":%d:%d:%s", line, column, msg))
 }

@@ -32,6 +32,12 @@ func (s *BaseDatemathListener) EnterIdentifier(ctx *IdentifierContext) {}
 // ExitIdentifier is called when production Identifier is exited.
 func (s *BaseDatemathListener) ExitIdentifier(ctx *IdentifierContext) {}
 
+// EnterDateLiteral is called when production DateLiteral is entered.
+func (s *BaseDatemathListener) EnterDateLiteral(ctx *DateLiteralContext) {}
+
+// ExitDateLiteral is called when production DateLiteral is exited.
+func (s *BaseDatemathListener) ExitDateLiteral(ctx *DateLiteralContext) {}
+
 // EnterLiteral is called when production Literal is entered.
 func (s *BaseDatemathListener) EnterLiteral(ctx *LiteralContext) {}
 

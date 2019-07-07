@@ -15,6 +15,10 @@ func (v *BaseDatemathVisitor) VisitIdentifier(ctx *IdentifierContext) interface{
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseDatemathVisitor) VisitDateLiteral(ctx *DateLiteralContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseDatemathVisitor) VisitLiteral(ctx *LiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
